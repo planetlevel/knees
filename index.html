@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Knee Workout Timer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --work: #1b8a3a;
+    --rest: #c0392b;
+    --paused: #d4a017;
+    --bg: #111;
+    --fg: #f5f5f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  #app {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    padding: 16px;
+  }
+  #app.work { background-color: var(--work); }
+  #app.rest { background-color: var(--rest); }
+  #app.paused { background-color: var(--paused); }
+
+  #workout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 24px;
+  }
+
+  #infoPanel {
+    flex: 1 1 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    overflow-y: auto;
+  }
+
+  #phase {
+    font-size: clamp(22px, 3.5vw, 46px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    min-height: 1em;
+  }
+
+  #timer {
+    font-size: clamp(90px, 16vw, 220px);
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 8px;
+  }
+
+  #exerciseName {
+    font-size: clamp(20px, 2.8vw, 34px);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  #imgWrap {
+    flex: 1 1 50%;
+    height: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #exerciseImg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  #controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  button {
+    font-size: 22px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.15);
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  button:hover { background: rgba(255,255,255,0.3); }
+
+  #progress {
+    font-size: 20px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+
+  #elapsed {
+    font-size: 18px;
+    opacity: 0.7;
+  }
+
+  #startScreen {
+    text-align: center;
+  }
+  #startScreen button {
+    font-size: 28px;
+    padding: 20px 40px;
+  }
+
+  @media (max-width: 700px) {
+    #workout {
+      flex-direction: column;
+    }
+    #infoPanel {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+    #imgWrap {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="app">
+    <div id="startScreen">
+      <h1>Knee Workout</h1>
+      <p>50s on / 10s off, straight through all exercises.</p>
+      <button id="startBtn">Start</button>
+    </div>
+
+    <div id="workout" style="display:none;">
+      <div id="infoPanel">
+        <div id="phase">Work</div>
+        <div id="timer">50</div>
+        <div id="exerciseName">Exercise</div>
+        <div id="controls">
+          <button id="backBtn">&#9664; Back</button>
+          <button id="pauseBtn">Pause</button>
+          <button id="forwardBtn">Forward &#9654;</button>
+        </div>
+        <div id="progress"></div>
+        <div id="elapsed">Elapsed 0:00</div>
+      </div>
+      <div id="imgWrap"><img id="exerciseImg" alt="exercise" /></div>
+    </div>
+  </div>
+
+  <script src="exercises.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
