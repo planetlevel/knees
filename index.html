@@ -130,15 +130,30 @@
     padding: 20px 40px;
   }
 
-  @media (max-width: 700px) {
+  @media (orientation: portrait) {
+    html, body { height: 100dvh; }
+    #app { height: 100dvh; padding: 10px; }
     #workout {
       flex-direction: column;
+      gap: 10px;
     }
     #infoPanel {
       flex: 0 0 auto;
+      height: auto;
       width: 100%;
+      overflow: visible;
     }
+    #phase { margin-bottom: 0; }
+    #timer { font-size: clamp(64px, 20vw, 120px); }
+    #exerciseName { margin-bottom: 8px; font-size: clamp(18px, 4.5vw, 26px); }
+    #controls { margin-bottom: 8px; gap: 8px; }
+    button { font-size: 18px; padding: 10px 16px; }
+    #progress { font-size: 16px; }
+    #elapsed { font-size: 15px; }
     #imgWrap {
+      flex: 1 1 0;
+      height: auto;
+      min-height: 0;
       width: 100%;
     }
   }
