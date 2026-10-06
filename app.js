@@ -126,12 +126,12 @@ pauseBtn.addEventListener('click', () => {
 
 forwardBtn.addEventListener('click', () => {
   nextExercise();
-  setPhase('work');
+  setPhase('rest');
 });
 
 backBtn.addEventListener('click', () => {
   prevExercise();
-  setPhase('work');
+  setPhase('rest');
 });
 
 if (typeof EXERCISES === 'undefined' || EXERCISES.length === 0) {
